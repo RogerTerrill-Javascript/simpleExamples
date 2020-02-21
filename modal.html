@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .gray-background {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 900;
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .modal {
+        width: 720px;
+        height: 520px;
+        background: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="test">
+        <button>Show Modal</button>
+    </div>
+
+    <script>
+        const showButton = document.getElementsByTagName('button')[0];
+        const modal = document.getElementById('test');
+        const innerModal = document.createElement('div');
+        const hideButton = document.createElement('button');
+        showButton.addEventListener('click', e => {
+          e.preventDefault();
+          modal.removeChild(showButton);
+          modal.classList.add('gray-background');
+          hideButton.innerHTML = "Hide Modal";
+          innerModal.classList.add('modal');
+          modal.appendChild(innerModal);
+          innerModal.appendChild(hideButton);
+        });
+  
+        hideButton.addEventListener('click', e =>{
+          e.preventDefault();
+          modal.classList.remove('gray-background');
+          modal.removeChild(innerModal);
+          modal.appendChild(showButton);
+
+        })
+      </script>
+  </body>
+</html>
